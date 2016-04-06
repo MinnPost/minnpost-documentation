@@ -13,12 +13,22 @@ With our host, we can submit a support ticket to request the files, or we can em
 
 We receive a zip file with these contents:
 
-1. intermediate.crt
-2. wildcard.minnpost.com.crt
-3. wildcard.minnpost.com.csr
-4. wildcard.minnpost.com.key
-5. wildcard.minnpost.com.pem
+1. name.txt
+2. name.cert.txt
+3. name.key.txt
+
+Steps to generate what we need:
+
+1. Remove the .txt from the above files and use .crt for intermediate and the .cert
+2. Make a PEM file from the key, cert, and intermediate cert in that order
 
 ## Heroku instructions
+
+http://ryan.mcgeary.org/2011/09/16/how-to-add-a-dnsimple-ssl-certificate-to-heroku/
+
+1. If it's not already there, add the SSL endpoint add-on (`heroku addons:add ssl:endpoint`)
+2. Upload the Cert and Private Key to Heroku (`heroku certs:add name.pem name.key`)
+3. If updating an existing certificate, instead use (`heroku certs:update name.pem name.key`)
+4. Don't forget to specify the app name
 
 ## Amazon EC2 Instructions
