@@ -9,6 +9,16 @@ After they install it, we have to install it on any other server space where we 
 
 ## Getting the certificate files
 
+With our host, we can submit a support ticket to request the files, or we can email them and they can upload them to a secure file site. Basically, don't do it over email.
+
+We receive a zip file with these contents:
+
+1. intermediate.crt
+2. wildcard.minnpost.com.crt
+3. wildcard.minnpost.com.csr
+4. wildcard.minnpost.com.key
+5. wildcard.minnpost.com.pem
+
 ## Heroku instructions
 
 ## Amazon EC2 Instructions
