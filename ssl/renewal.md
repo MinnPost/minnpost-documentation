@@ -32,3 +32,10 @@ http://ryan.mcgeary.org/2011/09/16/how-to-add-a-dnsimple-ssl-certificate-to-hero
 4. Don't forget to specify the app name
 
 ## Amazon EC2 Instructions
+
+1. scp -i ~/Sites/aws/minnpost-aws.pem ~/Sites/wildcard.minnpost.com/2016/intermediate.crt ubuntu@ec2-174-129-233-171.compute-1.amazonaws.com:~
+2. scp -i ~/Sites/aws/minnpost-aws.pem ~/Sites/wildcard.minnpost.com/2016/wildcard.minnpost.com.crt ubuntu@ec2-174-129-233-171.compute-1.amazonaws.com:~
+3. scp -i ~/Sites/aws/minnpost-aws.pem ~/Sites/wildcard.minnpost.com/2016/wildcard.minnpost.com.key ubuntu@ec2-174-129-233-171.compute-1.amazonaws.com:~
+4. scp -i ~/Sites/aws/minnpost-aws.pem ~/Sites/wildcard.minnpost.com/2016/wildcard.minnpost.com.pem ubuntu@ec2-174-129-233-171.compute-1.amazonaws.com:~
+5. ssh -i ~/Sites/aws/minnpost-aws.pem ubuntu@ec2-174-129-233-171.compute-1.amazonaws.com
+6. Copy or move the above files from ~/ to /etc/nginx/ssl
