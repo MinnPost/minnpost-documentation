@@ -93,7 +93,7 @@ We tested this with Drupal 6, and it was able to do a lot of migrating. It's unc
 
 - Custom fields:
 - Pages: 
-- Categories: migrated, but not relationships to posts.
+- Categories: migrated, but seem to only be tags. This means URLs for posts are also broken.
 - Subcategories:
 - Tags:
 - Media:
@@ -112,11 +112,21 @@ We tested this with Drupal 6, and it was able to do a lot of migrating. It's unc
 5. Remember to do it for each content type we want
 6. On authors, Column 'post_author' cannot be null (set to Allow NULL)
 7. Don't forget to run the weird thing on wp-config.php and then remove it after.
+8. Possible we'll have to run the wp-config.php thing again after we figure out categories.
 
 #### Issues inserting comments:
 
 1. Data truncated for column 'comment_parent' at row 183487 (field was previously a BIGINT(20); try making it VARCHAR(255))
 2. Data too long for column 'comment_author_url' at row 252111 (field was previously VARCHAR(200); try making it VARCHAR(255))
+
+#### Issues with categories:
+
+1. They don't show up in the list of categories, even though the database has their taxonomy set to 'category' in term_taxonomy.
+
+#### Issues inserting users:
+
+1. Only authors were inserted
+2. Because of how our Drupal usernames are saved in the database (usually First Last), the URLs are capitalized and include spaces. We'll need to edit this to ensure the URLs match the Drupal pattern.
 
 #### Result numbers: 
 
@@ -136,15 +146,15 @@ wp_users (~1,947)
 
 ### Toodlepip
 
-We've not tried this yet.
+We've not tried this yet. It seems likely it's not worth it, as it needs a lot of work if you don't only have one author. We have soooooo many authors.
 
 ### Underdog of Perfection
 
-We tested this with Drupal 6, and it was able to do a lot of migrating; similar results to Blondish. It's unclear so far what core article content was not migrated.
+We tested this with Drupal 6, and it was able to do a lot of migrating; similar results to Blondish. It's unclear so far what core article content was not migrated. We were consistently unable to run the site with the wp-config.php additions from another article. It resulted in 500 errors until we put a filter on the SQL to skip posts that didn't have a "publish" status, even though this didn't affect many rows.
 
 - Custom fields:
 - Pages: 
-- Categories: migrated, but not relationships to posts.
+- Categories: migrated, but not relationships to posts. This means URLs for posts are also broken.
 - Subcategories:
 - Tags:
 - Media:
@@ -162,7 +172,8 @@ We tested this with Drupal 6, and it was able to do a lot of migrating; similar 
 4. Column 'post_name' cannot be null (set to Allow Null)
 5. Remember to do it for each content type we want
 6. On authors, Column 'post_author' cannot be null (set to Allow NULL)
-7. Don't forget to run the weird thing on wp-config.php and then remove it after.
+7. Don't forget to run the weird thing on wp-config.php and then remove it after. (We tried this, and it consistently failed with a 500 error after ~half an hour. The error in the logs talks about an idle timeout). Tried putting in a limit to only get items with post_status='publish' - assumed this would not be a significant filter, as we only seemed to migrate 150 items that were not published, but it seemed to run successfully with no errors.
+8. Possible we'll have to run the wp-config.php thing again after we figure out categories.
 
 #### Issues inserting comments:
 
@@ -173,6 +184,11 @@ We tested this with Drupal 6, and it was able to do a lot of migrating; similar 
 
 1. Write a custom query to get departments (which are nodes) into the terms table.
 2. wp_term_taxonomy description doesn't have a default value (set to Allow NULL)
+
+#### Issues inserting users:
+
+1. Only authors were inserted
+2. Because of how our Drupal usernames are saved in the database (usually First Last), the URLs are capitalized and include spaces. We'll need to edit this to ensure the URLs match the Drupal pattern.
 
 #### Result numbers: 
 
