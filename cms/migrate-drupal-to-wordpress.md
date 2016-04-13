@@ -187,7 +187,10 @@ We tested this with Drupal 6, and it was able to do a lot of migrating; similar 
 
 #### Issues inserting users:
 
-1. Only authors were inserted
+1. Users with the following roles were inserted: administrator, authenticated noncommenting user, author, author quiz, author two, comment moderator, editor, member (and all member levels), super admin, unpublished viewer user, user admin
+    1. We can fix with LEFT JOIN instead of INNER JOIN.
+    2. However they are all given author permissions, except user with ID of 1, which is given admin.
+    3. We could fix this by assigning permissions to decreasing numbers of users as we go, so every user would have the roles needed, or we could filter users and assign only the highest role.
 2. Because of how our Drupal usernames are saved in the database (usually First Last), the URLs are capitalized and include spaces. We'll need to edit this to ensure the URLs match the Drupal pattern.
 
 #### Result numbers: 
@@ -204,3 +207,19 @@ wp_termmeta (0)
 wp_terms (6,787)
 wp_usermeta (3,909)
 wp_users (~1,947)
+
+
+#### Things that need work:
+
+1. Inserting all users
+2. Getting the roles into the system, and assigning users to the right roles.
+3. Getting all posts into system, and making sure categories are right
+4. Understand what to do about subcategories
+5. Tags (removing punctuation, special characters, words like in or of)
+6. Access to content based on roles
+7. Comments and users' comments
+8. Drafts instead of 'private'
+9. Custom fields
+10. Custom content types
+11. Forms
+12. 
