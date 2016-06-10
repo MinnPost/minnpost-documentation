@@ -20,7 +20,7 @@ We receive a zip file with these contents:
 Steps to generate what we need:
 
 1. Remove the .txt from the above files and use .crt for intermediate and the .cert
-2. Make a PEM file from the key, cert, and intermediate cert in that order
+2. Make a PEM file from the key, cert, and intermediate cert in that order. Should be able to do this in a text editor.
 
 ## Heroku instructions
 
