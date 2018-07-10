@@ -6,6 +6,7 @@ After they install it, we have to install it on any other server space where we 
 
 1. Heroku (support.minnpost.com)
 2. Amazon EC2 (boundaries.minnpost.com)
+3. Amazon EC2 (elections-scraper.minnpost.com)
 
 ## Getting the certificate files
 
