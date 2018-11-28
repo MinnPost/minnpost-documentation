@@ -1,16 +1,16 @@
 # Annual SSL Renewal
 
-We have a wildcard SSL certificate - that is, we can use it with any subdomain on minnpost.com. It gets renewed annually by our host, who gives us 60 days to approve its renewal and then installs it on their server.
+We currently have a wildcard SSL certificate - that is, we can use it with any subdomain on minnpost.com. It gets renewed annually by our host, who gives us 60 days to approve its renewal and then installs it on their server.
 
 After they install it, we have to install it on any other server space where we want to use it. Currently, this includes:
 
-1. Heroku (support.minnpost.com)
+1. ~~Heroku (support.minnpost.com)~~
 2. Amazon EC2 (boundaries.minnpost.com)
 3. Amazon EC2 (elections-scraper.minnpost.com)
 
 ## Getting the certificate files
 
-With our host, we can submit a support ticket to request the files, or we can email them and they can upload them to a secure file site. Basically, don't do it over email.
+With our current host, we can submit a support ticket to request the files, or we can email them and they can upload them to a secure file site. Basically, don't do it over email.
 
 We receive a zip file with these contents:
 
@@ -25,12 +25,7 @@ Steps to generate what we need:
 
 ## Heroku instructions
 
-http://ryan.mcgeary.org/2011/09/16/how-to-add-a-dnsimple-ssl-certificate-to-heroku/
-
-1. If it's not already there, add the SSL endpoint add-on (`heroku addons:add ssl:endpoint`)
-2. Upload the Cert and Private Key to Heroku (`heroku certs:add name.pem name.key`)
-3. If updating an existing certificate, instead use (`heroku certs:update name.pem name.key`)
-4. Don't forget to specify the app name
+1. We should no longer have to do anything for this. Heroku enabled [Automated Certificate Management](https://devcenter.heroku.com/articles/automated-certificate-management) and we switched to it, and it appears to work seamlessly.
 
 ## Amazon EC2 Instructions
 
