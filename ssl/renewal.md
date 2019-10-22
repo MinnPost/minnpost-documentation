@@ -10,6 +10,10 @@ After they install it, we have to install it on any other server space where we 
 
 ## Getting the certificate files
 
+We don't currently have a host that will sell us an SSL certificate. We can purchase one from any number of vendors, but hopefully won't have to do this.
+
+### If we have a zip file of a wildcard certificate
+
 With our current host, we can submit a support ticket to request the files, or we can email them and they can upload them to a secure file site. Basically, don't do it over email.
 
 We receive a zip file with these contents:
