@@ -29,10 +29,25 @@ Steps to generate what we need:
 
 ## Amazon EC2 Instructions
 
-1. `scp -i ~/Sites/aws/minnpost-aws.pem ~/Sites/wildcard.minnpost.com/2017/intermediate.crt ubuntu@ec2-23-22-85-111.compute-1.amazonaws.com:~`
-2. `scp -i ~/Sites/aws/minnpost-aws.pem ~/Sites/wildcard.minnpost.com/2017/wildcard.minnpost.com.crt ubuntu@ec2-23-22-85-111.compute-1.amazonaws.com:~`
-3. `scp -i ~/Sites/aws/minnpost-aws.pem ~/Sites/wildcard.minnpost.com/2017/wildcard.minnpost.com.key ubuntu@ec2-23-22-85-111.compute-1.amazonaws.com:~`
-4. `scp -i ~/Sites/aws/minnpost-aws.pem ~/Sites/wildcard.minnpost.com/2017/wildcard.minnpost.com.pem ubuntu@ec2-23-22-85-111.compute-1.amazonaws.com:~`
-5. `ssh -i ~/Sites/aws/minnpost-aws.pem ubuntu@ec2-23-22-85-111.compute-1.amazonaws.com`
+### If we can use Let's Encrypt script from EFF
+
+1. `ssh -i ~/Sites/aws/minnpost-aws.pem ubuntu@whatever`
+1. `sudo apt-get update`
+1. `sudo apt-get install software-properties-common`
+1. `sudo add-apt-repository universe`
+1. `sudo add-apt-repository ppa:certbot/certbot`
+1. `sudo apt-get update`
+1. `sudo apt-get install certbot python-certbot-nginx`
+1. Once the domain is pointing to the right instance: `sudo certbot --nginx`
+1. Test automatic renewal with `sudo certbot renew --dry-run`
+1. Check https://www.ssllabs.com/ssltest/.
+
+### If we have a wildcard certificate
+
+1. `scp -i ~/Sites/aws/minnpost-aws.pem ~/Sites/wildcard.minnpost.com/2017/intermediate.crt ubuntu@whatever:~`
+2. `scp -i ~/Sites/aws/minnpost-aws.pem ~/Sites/wildcard.minnpost.com/2017/wildcard.minnpost.com.crt ubuntu@whatever:~`
+3. `scp -i ~/Sites/aws/minnpost-aws.pem ~/Sites/wildcard.minnpost.com/2017/wildcard.minnpost.com.key ubuntu@whatever:~`
+4. `scp -i ~/Sites/aws/minnpost-aws.pem ~/Sites/wildcard.minnpost.com/2017/wildcard.minnpost.com.pem ubuntu@whatever:~`
+5. `ssh -i ~/Sites/aws/minnpost-aws.pem ubuntu@whatever`
 6. Copy or move the above files from ~/ to /etc/nginx/ssl
 7. Restart or reload nginx. Can reload config without restarting with `sudo service nginx reload`
